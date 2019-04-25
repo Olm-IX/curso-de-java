@@ -2,12 +2,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
+import java.util.Scanner;
 import java.util.TimeZone;
 
 public class Datas {
 
 	public static void main(String[] args) throws ParseException {
 		
+		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy"); // CRIA UM OBJETO COM A FORMATAÇÃO DA DATA
 		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		SimpleDateFormat sdf3 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -60,8 +62,15 @@ public class Datas {
 		System.out.println(sdf2.format(y2));
 		System.out.println("No UTC: ");
 		System.out.println(sdf3.format(y2));
-				
+		
+		// LENDO DATA INPUTADA PELO USUÁRIO
+		System.out.println();
+		System.out.print("Digite uma data (DD/MM/YYYY): ");
+		Date data = sdf1.parse(sc.next());
+		System.out.println(data);		
 		// TESTE
+		
+		sc.close();
 	}
 
 }
