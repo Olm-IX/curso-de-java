@@ -23,6 +23,7 @@ public class PessoaFisica extends Contribuinte {
 		this.gastosSaude = gastosSaude;
 	}
 
+	//É OBRIGATÓRIO SOBRESCREVER O MÉTODO ABSTRATO DA SUPERCLASSE!
 	@Override
 	public Double impostoPago() {
 		if (getRendaAnual()<20000.0) {
