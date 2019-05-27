@@ -58,6 +58,9 @@ public class Product {
 		this.quantity -= quantity;
 	}
 
+	@Override 
+	// toString É UM MÉTODO DA CLASSE OBJECT, QUE É A SUPERCLASSE DE TODAS
+	// AS CLASSES DO JAVA! POR ISSO O OVERRIDE
 	public String toString() {
 		return name 
 				+ ", $ " 
@@ -67,4 +70,6 @@ public class Product {
 				+ " units, Total: $ "
 				+ String.format("%.2f", totalValueInStock());
 	}
+	
+
 }
