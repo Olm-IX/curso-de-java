@@ -14,7 +14,7 @@ public class Reservation {
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
-	public Reservation(Integer roomNumber, Date checkIn, Date checkOut) {
+	public Reservation(Integer roomNumber, Date checkIn, Date checkOut) throws PersonalizadoException {
 		// PROGRAMAÇÃO DEFENSIVA, COLOCAR A CHECAGEM DA EXCEÇÃO NO INÍCIO
 		// AQUI ESTAMOS CHECANDO NO MOMENTO DA INSTANCIAÇÃO DO OBJETO, NO CONSTRUTOR, SE OS DADOS SÃO VÁLIDOS
 		if (!checkOut.after(checkIn)) {
@@ -46,7 +46,10 @@ public class Reservation {
 		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
 	}
 	
-	public void updateDates(Date checkIn, Date checkOut) {
+	public void updateDates(Date checkIn, Date checkOut) throws PersonalizadoException { 
+		// COMO A EXCEÇÃO PERSONALIZADA É UM EXCEPTION, TERÉ QUE PROPAGAR ESSA EXCEÇÃO
+		// A MESMA SERÁ TRATADA NO PROGRAMA PRINCIPAL
+		
 		Date now = new Date();
 		if (checkIn.before(now) || checkOut.before(now)) {
 			throw new IllegalArgumentException("Reservation dates for update must be future dates");
@@ -56,6 +59,11 @@ public class Reservation {
 			throw new PersonalizadoException("Check-out date must be after check-in date");
 			// ESSA É UMA EXCEÇÃO QUE EU CRIEI!
 		}
+		
+		// PODERIA CRIAR OUTRO IF E OUTRA MENSAGEM PARA A MESMA EXCEÇÃO! EX.:
+		// 	if (ALGUMA CONDIÇÃO) {
+		//      throw new PersonalizadoException("MENSAGEM PARA ALGUMA CONDIÇÃO");
+			
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 	}
