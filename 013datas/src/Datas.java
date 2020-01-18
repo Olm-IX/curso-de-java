@@ -58,8 +58,9 @@ public class Datas {
 		
 		// IMPRIMINDO AS DATAS NO FORMATO UTC SEM A CONVERSÃO AUTOMÁTICA PARA O HORÁRIO DO PC
 		System.out.println();
+		Date yy = Date.from(Instant.parse("2018-06-25T15:42:07Z"));
 		System.out.println("Fora do UTC: ");
-		System.out.println(sdf2.format(y2));
+		System.out.println(sdf2.format(yy));
 		System.out.println("No UTC: ");
 		System.out.println(sdf3.format(y2));
 		

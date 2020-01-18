@@ -13,26 +13,27 @@ public class Program {
 		
 		// UPCASTING -------------------------------------------
 		
-		// INSTANCIAR UM OBJETO DA SUBCLASSE NUMA VARIAVEL DA SUPERCLASSE!
-		// ESSA ASSOCIAÇÃO É FEITA EM TEMPO DE EXECUÇÃO, O COMPILADOR NÃO ENTENDE
-		// ISSO É POSSÍVEL POIS O OBJETO SUBCLASSE É UMA SUPERCLASSE (ESTÁ CONTIDO)
+		//Instanciar um objeto da subclasse numa variavel da superclasse (referência da superclasse) 
+		//Essa associação é feita em tempo de execução, o compilador não entende
+		//Isso é possível pois o objeto subclasse é uma superclasse (está contido)
 		Account acc1 = bacc;
-		Account acc2 = new BusinessAccount(1003, "Bob", 1000.0, 200.0); //	TERÁ NORMALMENTE OS MÉTODOS DA BUSINESSACCOUNT!
-		Account acc3 = new SavingsAccount(1004, "Anna", 1000.00, 0.01); //	TERÁ NORMALMENTE OS MÉTODOS DA SAVINGSACCOUNT!
+		Account acc2 = new BusinessAccount(1003, "Bob", 1000.0, 200.0); //	acc2 não poderá acessar os métodos declarados APENAS na BusinessAccount!
+		Account acc3 = new SavingsAccount(1004, "Anna", 1000.00, 0.01); //	acc3 não poderá acessar os métodos declarados APENAS na BusinessAccount!
 		
 		
 		// DOWNCASTING ---------------------------------------- 
 		
-		// INSTANCIAR UM OBJETO DA SUPERCLASSE NUMA VARIAVEL DA SUBCLASSE
-		// ISSO NÃO É POSSÍVEL, SE ESCREVER ISSO "BusinessAccount acc4 = acc2;" VAI DAR ERRO 
-		BusinessAccount acc4 = (BusinessAccount) acc2; // "FORÇAR" A CONVERSÃO PARA NÃO DAR ERRO. 
+		//Instanciar um objeto da superclasse numa variável da subclasse 
+		//Isso não é possível. "BusinessAccount acc = new Account ()" -> Erro. 
+		//"BusinessAccount acc4 = acc2;" -> Erro 
+		BusinessAccount acc4 = (BusinessAccount) acc2; // Força a conversão para não dar erro. 
 		acc4.loan(100.0);
-		//acc2 ERA UM OBJETO TIPO ACCOUNT QUE FOI INSTANCIADO COMO BUSINESSACCOUNT, POR ISSO DÁ PARA USAR O MÉTODO DO BUSINESSACCOUNT. 
-		
+		//acc2 era um objeto tipo Account que foi instanciado como BusinessAccount. por isso dá para usar o método do BusinessAccount 
 			
-		// BusinessAccount acc5 = (BusinessAccount)acc3; SE ESCREVER ISSO VAI DAR ERRO NA HORA DA COMPILAÇÃO!
-		// NÃO TEM COMO CONVERTER UMA INSTANCIA DE BUSINESSACCOUNT PARA SAVINSACCOUNT!
-		// USAR A PALAVRA "INSTANCEOF" PARA VER SE É POSSÍVEL A CONVERSÃO!
+		//"BusinessAccount acc5 = (BusinessAccount)acc3;" -> Erro na compilação
+		//Não tem como converter uma instância de BusinessAccount para SavingsAccount
+		//Usar a palavra "InstanceOf" para ver se é possível a conversão!
+		
 		if (acc3 instanceof BusinessAccount) {
 			BusinessAccount acc5 = (BusinessAccount)acc3;
 			acc5.loan(200.0);
