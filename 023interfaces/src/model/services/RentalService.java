@@ -8,10 +8,17 @@ public class RentalService {
 		private Double pricePerDay;
 		private Double pricePerHour;
 		
-		private BrazilTaxService taxService;
-
+		private TaxService taxService;
+		//private BrazilTaxService taxService;
+		//Essa classe estava muito dependente do BrazilTaxService, acessava diretamente
+		//essa outra classe. E se no futuro ela fosse alterada para, por exemplo, UsaTaxService? 
+		//teria que alterar muitas partes do código. É por isso que vamos usar agora a interface,
+		//ou seja, a classe RentalService irá se comunicar com a interface, e não com as classes
+		//específicas diretamente. Se depois forem criadas novas classes que também implementam a
+		//interface TaxService, também irá funcionar aqui sem precisar de alterações no código!
+		
 		public RentalService(Double pricePerDay, 
-				Double pricePerHour, BrazilTaxService taxService) {
+				Double pricePerHour, TaxService taxService) {
 			this.pricePerDay = pricePerDay;
 			this.pricePerHour = pricePerHour;
 			this.taxService = taxService;
@@ -26,7 +33,8 @@ public class RentalService {
 
 			//Expressão condicional ternária:
 			double basicPayment = (hours <= 12.0) ?
-					(Math.ceil(hours)*pricePerHour) : (Math.ceil(hours/24)*pricePerDay);
+					(Math.ceil(hours)*pricePerHour) : 
+					(Math.ceil(hours/24)*pricePerDay);
 			//"Math.ceil()" -> arredonda o número para cima
 					
 			double tax = taxService.tax(basicPayment);

@@ -10,6 +10,7 @@ import model.entities.CarRental;
 import model.entities.Vehicle;
 import model.services.BrazilTaxService;
 import model.services.RentalService;
+import model.services.UsaTaxService;
 
 public class Program {
 
@@ -32,9 +33,15 @@ public class Program {
 		System.out.print("Enter price per day: ");
 		double pricePerDay = sc.nextDouble();
 		
+		System.out.println("\n--------BRAZIL");
 		RentalService rs = new RentalService(pricePerDay, pricePerHour, new BrazilTaxService());
 		rs.processInvoice(cr);
 		System.out.println(rs.printInvoice(cr));
+		
+		System.out.println("\n--------USA");
+		RentalService rs2 = new RentalService(pricePerDay, pricePerHour, new UsaTaxService());
+		rs2.processInvoice(cr);
+		System.out.println(rs2.printInvoice(cr));
 		sc.close();
 	}
 }
