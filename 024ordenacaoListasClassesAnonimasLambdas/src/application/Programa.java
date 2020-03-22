@@ -42,7 +42,8 @@ public class Programa {
 		// implementa a interface Comparator
 
 		// Apenas por pragmatismo irei criar a classe aqui mesmo. Mas repare que esta
-		// classe serve apenas para encapsular um único método! Não é uma motivação muito 
+		// classe serve apenas para encapsular um único método! Não é uma motivação
+		// muito
 		// forte para criar uma classe nova...
 		class NomeDoClienteComparator implements Comparator<Conta> {
 
@@ -58,11 +59,11 @@ public class Programa {
 
 		// Esse método precisa de um Comparator como argumento, que irá determinar as
 		// regras da comparação
-		System.out.println("ORGANIZADO POR NOME DO CLIENTE- Usando o sort() e o Comparator");
+		System.out.println("ORGANIZADO POR NOME DO CLIENTE- Usando o sort() e o Comparator (exemplo sem forEach)");
 		lista.sort(new NomeDoClienteComparator());
 
-		// Esse métodoo forEach já funciona com uma expressão Lambda!
-		lista.forEach((conta) -> System.out.println(conta));
+		
+		System.out.println(lista);
 
 		// Para desorganizar a lista de novo
 		Collections.shuffle(lista);
@@ -79,16 +80,28 @@ public class Programa {
 
 		// Ou então passar só a lista e implementar, na classe Conta, a interface
 		// Comparable, tornando assim possível que a classe defina sua própria ordem!
-		System.out.println("\nORGANIZADO POR NÚMERO DA CONTA - Usando Collections.sort() e o Comparator");
+		System.out.println("\nORGANIZADO POR NÚMERO DA CONTA - Usando Collections.sort() e o Comparator (usando forEach!)");
 		Collections.sort(lista);
-		
+
+		// Esse métodoo forEach já funciona com uma expressão Lambda
 		lista.forEach((conta) -> System.out.println(conta));
 
 		Collections.shuffle(lista);
 
 		// -------------------------------------------------------------------------------------
 
-		// Método 3: Utilizando classes anônimas
+		// Método 3: Jeito mais enxuto de definir o Comparator em Collections.sort() e lista.sort();
+		
+		// comparing(), método estático de Comparator, que já recebe o critério de ordenação, no caso
+		// abaixo é usando o retorno do método getSaldo
+		lista.sort(Comparator.comparing(Conta::getSaldo)); //= Collections.sort(lista, Comparator.comparing(Conta::getSaldo));
+		System.out.println("\nORGANIZADO POR SALDO DA CONTA - Usando o sort() mais compacto");
+		lista.forEach((conta) -> System.out.println(conta));
+				
+		Collections.shuffle(lista);
+		// -------------------------------------------------------------------------------------
+
+		// Método 4: Utilizando classes anônimas
 
 		// São classes sem nomes, que implementam uma interface ou estendem uma classe.
 		// É possível escrever o código dessas classes no meio do programa,
@@ -100,41 +113,39 @@ public class Programa {
 			public int compare(Conta conta1, Conta conta2) {
 				return conta1.getCliente().getNome().compareTo(conta2.getCliente().getNome());
 			}
-		}
-		);
+		});
 
 		lista.forEach((conta) -> System.out.println(conta));
 
 		// Porém essas classes anônimas são de difícil leitura, pois o código da classe
-		// fica misturado com o código do programa! O código pode acabar ficando 
+		// fica misturado com o código do programa! O código pode acabar ficando
 		// confuso e bagunçado...
 
 		Collections.shuffle(lista);
 
 		// -------------------------------------------------------------------------------------
 
-		// Método 4: Utilizando os lambdas!
+		// Método 5: Utilizando os lambdas!
 
 		// É parecido com uma classe anônima, porém apagando tudo o que não for
-		// essencial para a classe, e usando a setinha "->". 
+		// essencial para a classe, e usando a setinha "->".
 		// Assim: (parametros) -> corpo do método, ação a ser feita, retorno.
 
 		lista.sort((Conta conta1, Conta conta2) -> {
 			return Double.compare(conta1.getSaldo(), conta2.getSaldo());
-		}
-		);
-		
+		});
+
 		Collections.shuffle(lista);
-		
+
 		// Se a implementação tiver mais de uma linha, é necessário utilizar
 		// as chaves e a palavra "return", como feito acima. Porém, se tiver
 		// apenas uma linha é possível abreviar mais, como escrito abaixo.
-		
+
 		System.out.println("\nORGANIZADO POR SALDO DA CONTA - Usando o sort() e Lambda!");
 		lista.sort((Conta conta1, Conta conta2) -> Double.compare(conta1.getSaldo(), conta2.getSaldo()));
-		
+
 		lista.forEach((conta) -> System.out.println(conta));
-		
+
 	}
 
 }
