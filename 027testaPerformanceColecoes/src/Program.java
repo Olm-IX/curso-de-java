@@ -69,23 +69,17 @@ public class Program {
 //		HashSet: 11 //UAU!!
 		System.out.println(System.lineSeparator() + "Performance para buscar todos os valores da coleção!");
 		start1 = System.currentTimeMillis();
-		for (Integer numero : arrayList) {
-			arrayList.contains(numero);
-		}
+		arrayList.forEach(a -> arrayList.contains(a));
 		finish1 = System.currentTimeMillis();
 		System.out.println("ArrayList: " + (finish1 - start1));
 		
 		start2 = System.currentTimeMillis();
-		for (Integer numero : linkedList) {
-			linkedList.contains(numero);
-		}
+		linkedList.forEach(a -> linkedList.contains(a));
 		finish2 = System.currentTimeMillis();
 		System.out.println("LinkedList: " + (finish2 - start2));
 		
 		start3 = System.currentTimeMillis();
-		for (Integer numero : set) {
-			set.contains(numero);
-		}
+		set.forEach(a -> set.contains(a));
 		finish3 = System.currentTimeMillis();
 		System.out.println("HashSet: " + (finish3 - start3));
 		
