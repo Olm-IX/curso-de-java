@@ -1,6 +1,6 @@
 package entities;
 
-public class Aluno {
+public class Aluno implements Comparable<Aluno>{
 
 	private String nome;
 	private int numeroMatricula;
@@ -29,4 +29,16 @@ public class Aluno {
 		// A classe String já possui um bom método para gerar hashCodes!
 		// E armazenar objetos com nomes semelhantes no mesmo grupo.
 	}
+
+	@Override
+	public int compareTo(Aluno outroAluno) {
+		return this.nome.compareTo(outroAluno.nome);
+		// Interface comparable inserida para testar os TreeSets!
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("%-10s - ", this.nome) + this.numeroMatricula;
+	}
+	
 }
