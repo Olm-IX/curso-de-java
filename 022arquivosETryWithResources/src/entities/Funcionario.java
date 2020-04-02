@@ -1,11 +1,14 @@
-package application;
+package entities;
 
-public class ClasseTeste {
+/**
+ * Classe Teste para ser usada no application.TryWithResources.java
+ */
+public class Funcionario {
 
 	private String funcionario;
 	private Double salario;
 	
-	public ClasseTeste(String funcionario, Double salario) {
+	public Funcionario(String funcionario, Double salario) {
 		this.funcionario = funcionario;
 		this.salario = salario;
 	}

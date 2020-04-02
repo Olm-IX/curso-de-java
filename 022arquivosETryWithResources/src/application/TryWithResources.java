@@ -20,12 +20,13 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import entities.Funcionario;
 
 public class TryWithResources {
 
 	public static void main(String[] args) {
 
-		List<ClasseTeste> lista = new LinkedList<>();
+		List<Funcionario> lista = new LinkedList<>();
 
 		try (var br = new BufferedReader(new FileReader("arquivo.csv"))) {
 
@@ -36,7 +37,7 @@ public class TryWithResources {
 //				lista.add(new ClasseTeste(separado[0], Double.valueOf(separado[1])));
 				var sc = new Scanner(linha);
 				sc.useDelimiter(",");
-				lista.add(new ClasseTeste(sc.next(), Double.valueOf(sc.next())));
+				lista.add(new Funcionario(sc.next(), Double.valueOf(sc.next())));
 				sc.close();
 				linha = br.readLine();
 			}
@@ -45,7 +46,7 @@ public class TryWithResources {
 			e.printStackTrace();
 		}
 		
-		lista.sort(Comparator.comparing(ClasseTeste::getFuncionario));
+		lista.sort(Comparator.comparing(Funcionario::getFuncionario));
 		
 		lista.forEach(x -> System.out.println(x.getFuncionario() + ", " + x.getSalario()));
 
