@@ -17,9 +17,14 @@ public class Program {
 //		Cria uma lista de elementos já pré-definidos:
 		List<String> lista = Arrays.asList("foo", "bar", "baz");
 //		lista.add("adsf"); // Lança uma java.lang.UnsupportedOperationException (AbstractList)
-		lista.set(1, "Naila");
+		lista.set(1, "Naila"); // ok!
+//		lista.add("Luiz"); // Lança uma java.lang.UnsupportedOperationException
 		System.out.println(lista); // output: [foo, Naila, baz]
-
+		
+		List<String> lista2 = new ArrayList<>(Arrays.asList("abc", "def"));
+		lista2.add("ghi"); // ok! Assim funciona
+		System.out.println(lista2); // output: [abc, def, ghi]
+		
 //		JAVA 9 - Lista não modificável:
 		List<String> list = List.of("foo", "bar", "baz");
 //		list.add("teste"); // Lança uma java.lang.UnsupportedOperationException (Immutable Collecion)
