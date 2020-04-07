@@ -24,7 +24,7 @@ public class Program {
 		List<String> lista2 = new ArrayList<>(Arrays.asList("abc", "def"));
 		lista2.add("ghi"); // ok! Assim funciona
 		System.out.println(lista2); // output: [abc, def, ghi]
-		
+	
 //		JAVA 9 - Lista não modificável:
 		List<String> list = List.of("foo", "bar", "baz");
 //		list.add("teste"); // Lança uma java.lang.UnsupportedOperationException (Immutable Collecion)
@@ -35,6 +35,12 @@ public class Program {
 //			list2.add("bar");
 //			list2.add("baz");
 //			list2 = Collections.unmodifiableList(list2);
+
+//		Obs.: Dá para criar uma lista modificável assim:
+		List<String> lista3 = new ArrayList<>(List.of("abc", "def"));
+		lista3.add("ghi"); // ok! Assim também funciona
+		System.out.println(lista3); // output: [abc, def, ghi]
+
 //		Java 9 Collection Factory Methods
 //			https://www.baeldung.com/java-9-collections-factory-methods
 //		What is the difference between List.of and Arrays.asList?
